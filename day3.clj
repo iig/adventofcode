@@ -33,3 +33,12 @@
    [num-drones route]
    (let [ordersets (partition num-drones route)
       ... etc ...
+     
+;;cgrand pointed out that there's more than one way to partition things
+(defn two-drones
+  [route]
+  (let [distill (comp count distinct concat)
+        walk-from-0 (partial santa-walk [0 0])
+        walk-second (fn [coll] (walk-from-0 (take-nth 2 coll)))]
+    (distill (walk-second route)
+             (walk-second (rest route)))))
