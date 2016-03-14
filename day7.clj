@@ -62,8 +62,6 @@
 
 ;; if you want to see what is actually is going on here's a chatty version
 
-(def instructions "paste them here")
-
 (defn debug-solve
   [instr key cache]
   (let [{:keys [op xstr args]} (get instr key)
@@ -74,12 +72,14 @@
                                (let [_ (println (str "Failed to `decache` " %))] (xsolve instr % cache))) args))
               (op))
         _ (println (str "Writing to cache " key " = " res))
-        _ (swap! cache assoc key res)]
-    res))
+        _ (swap! cache assoc key res)
+        ]
+    res
+    ))
 
 
 ;;;;;;;;; and then to run it just do
-(solve (parser instructions) "a")
+(solve (parser real-inst) "a")
 
 ;;;;;;;;; for part two it's a little ridiculously easy
-(solve (parser (str instructions "\n" (solve (parser instructions) "a") " -> b")) "a")
+(solve (parser (str real-inst"\n" (solve (parser real-inst) "a") " -> b")) "a")
