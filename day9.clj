@@ -1,6 +1,8 @@
 (ns adventofcode.day9
   (:require [clojure.math.combinatorics :as combo]))
 
+;; i take your np-complete problem and throw Moore's law at it and hope that problem space is small enough. 
+
 ;; let's parse the input
 (def distances
   (->> (clojure.string/split-lines instr)
